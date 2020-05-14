@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/astisilva/webshopapi/issues"
   },
-  "homepage": "https://github.com/astisilva/webshopapi#readme"
+  "homepage": "https://github.com/astisilva/webshopapi#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
