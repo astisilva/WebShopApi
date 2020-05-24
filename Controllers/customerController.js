@@ -1,9 +1,9 @@
 const db = require('../db');
 
-productsController = () => {
+customerController = () => {
   get = async (req, res) => {
     try {
-      const records = await db.get(req, res, 'product');
+      const records = await db.get(req, res, 'customer');
 
       if (records.length == 0) {
         res.status(404);
@@ -18,7 +18,7 @@ productsController = () => {
 
   post = async (req, res) => {
     try {
-      return await db.modify(req, res, 'AddProduct', 'BrandId', 'Product', 'Price', 'PercentOff', 'Description', 'IsFeatured', 'Stars', 'TaxId');
+      return await db.modify(req, res, 'AddCustomer', 'Email', 'PasswordHash', 'Token', 'ShippingAddressId', 'InvoiceAddressId', 'AvatarUrl', 'RewardPoints', 'FirstName', 'LastName', 'Phone');
     } catch (err) {
       res.status(500);
       console.log(err);
@@ -28,7 +28,7 @@ productsController = () => {
 
   put = async (req, res) => {
     try {
-      return await db.modify(req, res, 'UpdateProduct', 'BrandId', 'Product', 'Price', 'PercentOff', 'Description', 'IsFeatured', 'Stars', 'TaxId');
+      return await db.modify(req, res, 'UpdateCustomer', 'Email', 'PasswordHash', 'Token', 'ShippingAddressId', 'InvoiceAddressId', 'AvatarUrl', 'RewardPoints', 'FirstName', 'LastName', 'Phone');
     } catch (err) {
       res.status(500);
       return res.send('Unable to update.');
@@ -37,7 +37,7 @@ productsController = () => {
 
   remove = async (req, res) => {
     try {
-      await db.modify(req, res, 'DeleteProduct');
+      await db.modify(req, res, 'DeleteCustomer');
     } catch (err) {
       console.log(err);
       res.status(500);
@@ -52,4 +52,4 @@ productsController = () => {
     remove,
   };
 
-module.exports = productsController;
+module.exports = customerController;
