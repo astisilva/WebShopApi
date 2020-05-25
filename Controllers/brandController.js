@@ -1,3 +1,15 @@
+/* eslint-disable eol-last */
+/* eslint-disable consistent-return */
+/* eslint-disable no-console */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable operator-linebreak */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-return-assign */
+/* eslint-disable indent */
+/* eslint-disable arrow-parens */
+/* eslint-disable no-undef */
+/* eslint-disable no-param-reassign */
 const db = require('../db');
 
 brandController = () => {
@@ -51,5 +63,5 @@ brandController = () => {
     put,
     remove,
   };
-
+};
 module.exports = brandController;

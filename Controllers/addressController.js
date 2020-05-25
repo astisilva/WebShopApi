@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const db = require('../db');
 
 addressController = () => {
@@ -18,7 +19,17 @@ addressController = () => {
 
   post = async (req, res) => {
     try {
-      return await db.modify(req, res, 'AddAddress', 'Address1', 'Address2', 'City', 'Zip', 'CountryId', 'Company');
+      return await db.modify(
+        req,
+        res,
+        'AddAddress',
+        'Address1',
+        'Address2',
+        'City',
+        'Zip',
+        'CountryId',
+        'Company'
+      );
     } catch (err) {
       res.status(500);
       console.log(err);
@@ -28,7 +39,17 @@ addressController = () => {
 
   put = async (req, res) => {
     try {
-      return await db.modify(req, res, 'UpdateAddress', 'Address1', 'Address2', 'City', 'Zip', 'CountryId', 'Company');
+      return await db.modify(
+        req,
+        res,
+        'UpdateAddress',
+        'Address1',
+        'Address2',
+        'City',
+        'Zip',
+        'CountryId',
+        'Company'
+      );
     } catch (err) {
       res.status(500);
       return res.send('Unable to update.');
@@ -37,8 +58,9 @@ addressController = () => {
 
   remove = async (req, res) => {
     try {
-      await db.modify(req, res, 'DeleteAddress');
+      return await db.modify(req, res, 'DeleteAddress');
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
       res.status(500);
       return res.send('Unable to Delete.');
@@ -51,5 +73,5 @@ addressController = () => {
     put,
     remove,
   };
-
+};
 module.exports = addressController;

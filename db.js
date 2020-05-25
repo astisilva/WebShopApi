@@ -1,26 +1,35 @@
+/* eslint-disable no-console */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable operator-linebreak */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-return-assign */
+/* eslint-disable indent */
+/* eslint-disable arrow-parens */
+/* eslint-disable no-undef */
+/* eslint-disable no-param-reassign */
 const sql = require('mssql');
 const config = require('./config');
 
 createHateoasLinks = (req, records, hateoas) =>{
-  records.recordset.map((record) => {
+  return records.recordset.map((record) => {
     record.links = {};
 
-    hateoas.forEach(
-      (link) =>
-        (record.links[
-          link.property.toLowerCase() == 'id' ? 'self' : link.property.toLowerCase()] = 
-          `http://${req.headers.host}/api/${link.endpoint}/${record[link.property]}`);
+    hateoas.forEach(link =>
+        record.links[link.property.toLowerCase() === 'id' ? 'self' : link.property.toLowerCase()] =
+         `http://${req.headers.host}/api/${link.endpoint}/${record[link.property]}`);
     return record;
   });
-}
+};
+
 createSqlParameters = (req, res, ...bodyProperties) => {
   try {
     let hasAllBodyProperties = false;
     let id = '';
 
-    if (req.method == 'PUT' && req.params.hasOwnProperty('Id') && req.params.Id > 0) {
+    if (req.method === 'PUT' && req.params.hasOwnProperty('Id') && req.params.Id > 0) {
       id = `${req.params.Id},`;
-    } else if (req.method == 'DELETE' && req.params.hasOwnProperty('Id') && req.params.Id > 0) {
+    } else if (req.method === 'DELETE' && req.params.hasOwnProperty('Id') && req.params.Id > 0) {
       id = `${req.params.Id}`;
     }
     /* else {
@@ -88,7 +97,7 @@ get = async (req, res, endpoint, hateoas = [], ...params) => {
     await sql.connect(config);
     result = await sql.query(query);
 
-    if (result.recordset.length == 0) {
+    if (result.recordset.length === 0) {
       res.status(404);
       return result;
     }
@@ -112,9 +121,9 @@ modify = async (req, res, sp, ...bodyProperties) => {
     await sql.connect(config);
     const result = await sql.query(`EXEC ${sp} ${res.sqlParameters}`);
 
-    if (req.method == 'PUT' || req.method == 'DELETE') {
+    if (req.method === 'PUT' || req.method === 'DELETE') {
       res.status(204);
-      return res.send(req.method == 'PUT' ? 'Update successful.' : 'Deleted successfully.');
+      return res.send(req.method === 'PUT' ? 'Update successful.' : 'Deleted successfully.');
     }
 
     // Endast POST

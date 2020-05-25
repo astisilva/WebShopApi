@@ -1,3 +1,16 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable eol-last */
+/* eslint-disable consistent-return */
+/* eslint-disable no-console */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable operator-linebreak */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-return-assign */
+/* eslint-disable indent */
+/* eslint-disable arrow-parens */
+/* eslint-disable no-undef */
+/* eslint-disable no-param-reassign */
 const db = require('../db');
 
 orderRowController = () => {
@@ -18,7 +31,18 @@ orderRowController = () => {
 
   post = async (req, res) => {
     try {
-      return await db.modify(req, res, 'AddOrderRow', 'OrderId', 'ProductId', 'Price', 'PercentOff', 'Count', 'Total', 'Tax');
+      return await db.modify(
+        req,
+        res,
+        'AddOrderRow',
+        'OrderId',
+        'ProductId',
+        'Price',
+        'PercentOff',
+        'Count',
+        'Total',
+        'Tax',
+      );
     } catch (err) {
       res.status(500);
       console.log(err);
@@ -28,7 +52,18 @@ orderRowController = () => {
 
   put = async (req, res) => {
     try {
-      return await db.modify(req, res, 'UpdateOrderRow', 'OrderId', 'ProductId', 'Price', 'PercentOff', 'Count', 'Total', 'Tax');
+      return await db.modify(
+        req,
+        res,
+        'UpdateOrderRow',
+        'OrderId',
+        'ProductId',
+        'Price',
+        'PercentOff',
+        'Count',
+        'Total',
+        'Tax',
+      );
     } catch (err) {
       res.status(500);
       return res.send('Unable to update.');
@@ -51,5 +86,5 @@ orderRowController = () => {
     put,
     remove,
   };
-
+};
 module.exports = orderRowController;
